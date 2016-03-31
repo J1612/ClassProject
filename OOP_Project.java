@@ -101,6 +101,7 @@ public class OOP_Project {
                             System.out.println();
                             System.out.println("*************************************");
                             System.out.println("Program recieved incorrect input");
+                            System.out.println("The name shouldn't include any whitespace");
                             System.out.println("The model number should be an integer");
                             System.out.println("The price should be a decimal number");
                             System.out.println("*************************************");
