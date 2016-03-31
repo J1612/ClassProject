@@ -17,6 +17,10 @@ public class RobotModel {
     private double price;
     private RobotPart[] robotparts;
     
+    public RobotModel(){
+        
+    }
+    
     public RobotModel(String name, int modelNumber, double price, RobotPart[] robotparts)
     {
         this.name = name;
