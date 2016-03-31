@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package RobotModel;
+package oop_project;
 
 /**
  *
@@ -12,9 +12,27 @@ package RobotModel;
 
 public class RobotModel {
     
-    public RobotModel()
+    private String name;
+    private int modelNumber;
+    private double price;
+    private RobotPart[] robotparts;
+    
+    public RobotModel(String name, int modelNumber, double price, RobotPart[] robotparts)
     {
+        this.name = name;
+        this.modelNumber = modelNumber;
+        this.price = price;
+        this.robotparts = robotparts;
+    }
+    
+    public double componentCost(){
         
+        return 0.0;
+    }
+    
+    public double maxSpeed(){
+        
+        return 0.0;
     }
     
     void OrderPart()
@@ -25,6 +43,62 @@ public class RobotModel {
     void PartCost()
     {
         
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the modelNumber
+     */
+    public int getModelNumber() {
+        return modelNumber;
+    }
+
+    /**
+     * @param modelNumber the modelNumber to set
+     */
+    public void setModelNumber(int modelNumber) {
+        this.modelNumber = modelNumber;
+    }
+
+    /**
+     * @return the price
+     */
+    public double getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    /**
+     * @return the robotparts
+     */
+    public RobotPart[] getRobotparts() {
+        return robotparts;
+    }
+
+    /**
+     * @param robotparts the robotparts to set
+     */
+    public void setRobotparts(RobotPart[] robotparts) {
+        this.robotparts = robotparts;
     }
     
 }
