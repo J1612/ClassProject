@@ -16,7 +16,17 @@ public class Shop {
     
     public Shop()
     {
-        
+        robotModels = null;
+    }
+    
+    public Shop(RobotModel[] robotArr)
+    {
+        robotModels = robotArr;
+    }
+    
+    RobotModel[] getRobotModels()
+    {
+        return robotModels;
     }
     
     void createPart()
