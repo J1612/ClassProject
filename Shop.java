@@ -12,6 +12,7 @@ package oop_project;
 
 public class Shop {
     
+    private RobotModel[] robotModels;
     
     public Shop()
     {
