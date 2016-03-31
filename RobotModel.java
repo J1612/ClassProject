@@ -12,10 +12,6 @@ package RobotModel;
 
 public class RobotModel {
     
-    public static void main(String[] args) {
-        
-    }
-    
     public RobotModel()
     {
         
