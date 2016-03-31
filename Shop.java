@@ -19,9 +19,14 @@ public class Shop {
         robotModels = null;
     }
     
-    public Shop(RobotModel[] robotArr)
+    public Shop(RobotModel[] robotModels)
     {
-        robotModels = robotArr;
+        this.robotModels = robotModels;
+    }
+    
+    void setRobotModels(RobotModels[] robotModels)
+    {
+        this.robotModels = robotModels;
     }
     
     RobotModel[] getRobotModels()
