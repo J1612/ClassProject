@@ -31,7 +31,6 @@ public class Torso extends RobotPart{
     /**
      * @return the head
      */
-    @Override
     public Head getHead() {
         return head;
     }
@@ -39,7 +38,6 @@ public class Torso extends RobotPart{
     /**
      * @param head the head to set
      */
-    @Override
     public void setHead(Head head) {
         this.head = head;
     }
@@ -61,7 +59,6 @@ public class Torso extends RobotPart{
     /**
      * @return the locomotor
      */
-    @Override
     public Locomotor getLocomotor() {
         return locomotor;
     }
@@ -69,7 +66,6 @@ public class Torso extends RobotPart{
     /**
      * @param locomotor the locomotor to set
      */
-    @Override
     public void setLocomotor(Locomotor locomotor) {
         this.locomotor = locomotor;
     }
