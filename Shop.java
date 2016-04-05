@@ -19,12 +19,18 @@ public class Shop {
     
     public Shop()
     {
+        orders = null;
         robotModels = null;
+        customers = null;
+        salesAssoc = null;
     }
     
-    public Shop(RobotModel[] robotModels)
+    public Shop(Order[] orders, RobotModel[] robotModels, Customer[] customers, SalesAssoc[] salesAssoc)
     {
+        this.orders = orders;
         this.robotModels = robotModels;
+        this.customers = customers;
+        this.salesAssoc = salesAssoc;
     }
     
     void setRobotModels(RobotModels[] robotModels)
