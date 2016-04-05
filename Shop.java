@@ -12,7 +12,10 @@ package oop_project;
 
 public class Shop {
     
+    private Order[] orders;
     private RobotModel[] robotModels;
+    private Customer[] customers;
+    private SalesAssoc[] salesAssoc;
     
     public Shop()
     {
@@ -32,6 +35,36 @@ public class Shop {
     RobotModel[] getRobotModels()
     {
         return robotModels;
+    }
+    
+    Order[] getOrders()
+    {
+        return orders;
+    }
+    
+    void setOrders(Order[] orders)
+    {
+        this.orders = orders;
+    }
+    
+    Customer[] getCustomers()
+    {
+        return customers;
+    }
+    
+    void setCustomers(Customer[] customer)
+    {
+        this.customers = customers;
+    }
+    
+    SalesAssoc[] getSalesAssoc()
+    {
+        return salesAssoc;
+    }
+    
+    void setSalesAssoc(SalesAssoc[] salesAssoc)
+    {
+        this.salesAssoc = salesAssoc;
     }
     
     void createPart()
