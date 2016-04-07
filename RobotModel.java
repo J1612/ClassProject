@@ -3,23 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package oop_project;
+package oop_project_master;
 
 /**
  *
- * @author Marisa
+ * @author Shaun
  */
-
 public class RobotModel {
     
     private String name;
     private int modelNumber;
     private double price;
     private RobotPart[] robotparts;
-    
-    public RobotModel(){
-        
-    }
     
     public RobotModel(String name, int modelNumber, double price, RobotPart[] robotparts)
     {
@@ -29,26 +24,30 @@ public class RobotModel {
         this.robotparts = robotparts;
     }
     
-    public double componentCost(){
-        
-        return 0.0;
+    public double armCost(){
+        return robotparts[0].getArm().getCost();
+    }
+    
+    public double batteryCost(){
+        return robotparts[1].getBattery().getCost();
+    }
+    
+    public double headCost(){
+        return robotparts[2].getHead().getCost();
+    }
+    
+    public double locomotorCost(){
+        return robotparts[3].getLocomotor().getCost();
+    }
+    
+    public double torsoCost(){
+        return robotparts[4].getTorso().getCost();
     }
     
     public double maxSpeed(){
-        
-        return 0.0;
+        return robotparts[2].getLocomotor().getMaxSpeed();
     }
     
-    void OrderPart()
-    {
-        
-    }
-    
-    void PartCost()
-    {
-        
-    }
-
     /**
      * @return the name
      */
