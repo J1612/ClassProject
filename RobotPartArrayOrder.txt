@@ -1,0 +1,5 @@
+Index 0:  Arm
+Index 1:  Battery
+Index 2:  Head
+Index 3:  Locomotor
+Index 4:  Torso
