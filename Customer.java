@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package oop_project;
-
+import java.util.ArrayList;
 /**
  *
  * @author Shaun
@@ -13,17 +13,25 @@ public class Customer {
     private String name;
     private int customerNumber;
     private double wallet;
-    private Order[] orders;
+    private ArrayList<Order> orders;
     
     public Customer()
     {
         this.name = null;
         this.customerNumber = 0;
         this.wallet = 0.0;
-        this.orders = null;
+        this.orders = new ArrayList();
     }
     
-    public Customer(String name, int customerNumber, double wallet, Order[] orders)
+    public Customer(String name)
+    {
+        this.name = name;
+        this.customerNumber = 0;
+        this.wallet = 0.0;
+        this.orders = new ArrayList();
+    }
+    
+    public Customer(String name, int customerNumber, double wallet, ArrayList<Order> orders)
     {
         this.name = name;
         this.customerNumber = customerNumber;
@@ -62,12 +70,12 @@ public class Customer {
         this.wallet = wallet;
     }
     
-    public Order[] getOrders()
+    public ArrayList<Order> getOrders()
     {
         return orders;
     }
     
-    public void setOrders(Order[] orders)
+    public void setOrders(ArrayList<Order> orders)
     {
         this.orders = orders;
     }
