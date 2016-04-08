@@ -5,21 +5,28 @@
  */
 package oop_project;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  *
  * @author Shaun
  */
-public class Oop_project_master {   
+public class OOP_project {   
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        Customer currentCustomer;
         String mainInput;
         String createInput;
+        String reportInput;
         String robotComponent;
         String name;
+        String customerName;
         int modelNumber;
-        int counter;
         double price;
+        boolean customerExists;
+        ArrayList<Customer> customerList = new ArrayList();
+        ArrayList<Order> orderList = new ArrayList();
+        
         
         printMainMenu();
         mainInput = sc.next();
@@ -37,7 +44,26 @@ public class Oop_project_master {
                             
                             /* Create Order */
                             case "O":
-                                Order newOrder = new Order("XX/XX/XXXX", new Customer(), null, new RobotModel()); // CHANGE "new Customer()" TO A POSSIBLE EXISTING CUSTOMER, ELSE CREATE A NEW ONE...HINT:*USE ARRAYLIST* DO THE SAME FOR ROBOT MODELS
+                                customerExists = false;
+                                System.out.print("Enter your name (If you've entered it before, be sure to use the same exact characters): ");
+                                customerName = sc.next();
+                                for(Customer customer: customerList){
+                                    if (customer.getName().equals(customerName)){
+                                        System.out.println("Thank you, " + customer.getName() + ", for your purchase!");
+                                        Order newOrder = new Order("XX/XX/XXXX", customer, null, new RobotModel());
+                                        customer.getOrders().add(newOrder);
+                                        customerExists = true;
+                                    }
+                                    break;
+                                }
+                                if (customerExists == false){
+                                    //System.out.println("You are not in the record. Select 'Customer' in the Creation menu to add your profile");
+                                    System.out.println("You were added to the record just now. If you want to create your first order, you must choose this option again."); //FIX: REMOVE LINE 61,62, and 63 after SPRINT #2 demonstration
+                                    currentCustomer = new Customer(customerName);
+                                    customerList.add(currentCustomer);
+                                }
+                                customerExists = false;
+                                System.out.println();
                                 break;
                             
                             /* Create Robot Component */
@@ -103,6 +129,46 @@ public class Oop_project_master {
                             }
                     }
                     break;
+                
+                /* Open Report Menu */
+                case "R":
+                    reportInput = "0";
+                    while (!reportInput.equals("Q")){
+                        printReportMenu();
+                        reportInput = sc.next();
+                        switch (reportInput){
+                            
+                            /* Show Orders */
+                            case "O":
+                                customerExists = false;
+                                System.out.print("Enter your name (If you've entered it before, be sure to use the same exact characters): ");
+                                customerName = sc.next();
+                                for (Customer customer : customerList){
+                                    if (customer.getName().equals(customerName)){
+                                        customerExists = true;
+                                        System.out.println("Your orders are as follows: ");
+                                        for (Order order : customer.getOrders()){
+                                            System.out.println("Order #" + order.getOrderNumber() + " for $" + order.totalPrice());
+                                        }
+                                    }
+                                    if (customerExists == false){
+                                        System.out.println("The specified name was not found.");
+                                    }
+                                    break;
+                                }
+                                customerExists = false;
+                                break;
+                                
+                            case "Q":
+                               break;
+                               
+                            default:
+                                System.out.println("Not Implemented Yet.");
+                                break;
+                        }
+                        System.out.println();
+                    }
+                    break;
                     
                 default:
                     System.out.println("Not Implemented Yet.");
@@ -132,6 +198,18 @@ public class Oop_project_master {
         System.out.println("(S)ales Associate");
         System.out.println("(R)obot Component");
         System.out.println(" Robot (M)odel");
+        System.out.println("(Q)uit to Main Menu");
+        System.out.print("Your Choice: ");
+    }
+    
+    public static void printReportMenu(){
+        System.out.println("Report Menu");
+        System.out.println("-----------");
+        System.out.println("(O)rders");
+        System.out.println("(C)ustomers");
+        System.out.println("(S)ales Associates");
+        System.out.println("(R)obot Components");
+        System.out.println("Robot (M)odels");
         System.out.println("(Q)uit to Main Menu");
         System.out.print("Your Choice: ");
     }
