@@ -12,7 +12,7 @@ package oop_project;
 public class SalesAssociate {
     private String name;
     private int employeeNumber;
-    private static int = nextEmployeeNumber = 1;
+    private static int nextEmployeeNumber = 1;
     private Order[] orders;
     
     public SalesAssociate (String name){
