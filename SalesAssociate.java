@@ -19,5 +19,13 @@ public class SalesAssociate {
         this.name=name;
         this.employeeNumber = nextEmployeeNumber++;
     }
+    
+    public void getName(){
+        return this.name;
+    }
+    
+    public void getEmployeeNumber(){
+        return this.EmployeeNumber
+    }
 
 }
