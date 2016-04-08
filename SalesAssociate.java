@@ -20,12 +20,12 @@ public class SalesAssociate {
         this.employeeNumber = nextEmployeeNumber++;
     }
     
-    public void getName(){
+    public String getName(){
         return this.name;
     }
     
-    public void getEmployeeNumber(){
-        return this.EmployeeNumber
+    public int getEmployeeNumber(){
+        return this.employeeNumber;
     }
 
 }
