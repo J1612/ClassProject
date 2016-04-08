@@ -72,15 +72,4 @@ public class Shop {
     {
         this.salesAssoc = salesAssoc;
     }
-    
-    void createPart()
-    {
-        
-    }
-    
-    void createRobot()
-    {
-        
-    }
-    
 }
