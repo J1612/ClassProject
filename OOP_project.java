@@ -45,7 +45,7 @@ public class OOP_project {
                             /* Create Order */
                             case "O":
                                 customerExists = false;
-                                System.out.print("Enter your name (If you've entered it before, be sure to use the same exact characters): ");
+                                System.out.print("Enter your name: ");
                                 customerName = sc.next();
                                 for(Customer customer: customerList){
                                     if (customer.getName().equals(customerName)){
@@ -57,15 +57,21 @@ public class OOP_project {
                                     }
                                 }
                                 if (customerExists == false){
-                                    //System.out.println("You are not in the record. Select 'Customer' in the Creation menu to add your profile");
-                                    System.out.println("You were added to the record just now. If you want to create your first order, you must choose this option again."); //FIX: REMOVE LINE 61,62, and 63 after SPRINT #2 demonstration
-                                    currentCustomer = new Customer(customerName);
-                                    customerList.add(currentCustomer);
+                                    System.out.println("You are not in the record. Select 'Customer' in the Creation menu to add your profile.");
                                 }
                                 customerExists = false;
                                 System.out.println();
                                 break;
                             
+                            /* Create Customer */
+                            case "C":
+                                System.out.print("Enter your name (Be sure to remember every character): ");
+                                customerName = sc.next();
+                                System.out.println("You were added to the record just now.");
+                                currentCustomer = new Customer(customerName);
+                                customerList.add(currentCustomer);
+                                break;
+                                
                             /* Create Robot Component */
                             case "R":
                                 System.out.println("Do you wish to make a (H)ead, (L)ocomotor, (T)orso, (B)attery, or (A)rm?");
