@@ -3,37 +3,42 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package oop_project;
+package oop_project_master;
 
 /**
  *
- * @author Weston
+ * @author Shaun
  */
-
 public class Shop {
     
     private Order[] orders;
     private RobotModel[] robotModels;
     private Customer[] customers;
-    private SalesAssoc[] salesAssoc;
+    private SalesAssociate[] salesAssociate;
+    
     
     public Shop()
     {
-        orders = null;
-        robotModels = null;
-        customers = null;
-        salesAssoc = null;
+        this.orders = null;
+        this.robotModels = null;
+        this.customers = null;
+        this.salesAssociate = null;
     }
     
-    public Shop(Order[] orders, RobotModel[] robotModels, Customer[] customers, SalesAssoc[] salesAssoc)
+    public Shop(Order[] orders, RobotModel[] robotModels, Customer[] customers, SalesAssociate[] salesAssociate)
     {
         this.orders = orders;
         this.robotModels = robotModels;
         this.customers = customers;
-        this.salesAssoc = salesAssoc;
+        this.salesAssociate = salesAssociate;
     }
     
-    void setRobotModels(RobotModels[] robotModels)
+    public Shop(RobotModel[] robotModels)
+    {
+        this.robotModels = robotModels;
+    }
+    
+    void setRobotModels(RobotModel[] robotModels)
     {
         this.robotModels = robotModels;
     }
@@ -43,33 +48,5 @@ public class Shop {
         return robotModels;
     }
     
-    Order[] getOrders()
-    {
-        return orders;
-    }
-    
-    void setOrders(Order[] orders)
-    {
-        this.orders = orders;
-    }
-    
-    Customer[] getCustomers()
-    {
-        return customers;
-    }
-    
-    void setCustomers(Customer[] customer)
-    {
-        this.customers = customers;
-    }
-    
-    SalesAssoc[] getSalesAssoc()
-    {
-        return salesAssoc;
-    }
-    
-    void setSalesAssoc(SalesAssoc[] salesAssoc)
-    {
-        this.salesAssoc = salesAssoc;
-    }
 }
+

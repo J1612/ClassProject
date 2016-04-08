@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package oop_project;
+package oop_project_master;
 
 /**
  *
- * @author Weston
+ * @author Shaun
  */
-
-
 public class Customer {
-
     private String name;
     private int customerNumber;
     private double wallet;
@@ -20,10 +17,10 @@ public class Customer {
     
     public Customer()
     {
-        name = null;
-        customerNumber = 0;
-        wallet = 0.0;
-        orders = null;
+        this.name = null;
+        this.customerNumber = 0;
+        this.wallet = 0.0;
+        this.orders = null;
     }
     
     public Customer(String name, int customerNumber, double wallet, Order[] orders)
@@ -34,6 +31,7 @@ public class Customer {
         this.orders = orders;
     }
     
+    /* Only Getters and Setters below this point */
     public String getName()
     {
         return name;
@@ -73,5 +71,4 @@ public class Customer {
     {
         this.orders = orders;
     }
-    
 }

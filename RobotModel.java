@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package oop_project;
+package oop_project_master;
 
 /**
  *
@@ -11,10 +11,28 @@ package oop_project;
  */
 public class RobotModel {
     
+    private static int number = 1;
     private String name;
     private int modelNumber;
     private double price;
     private RobotPart[] robotparts;
+    
+    public RobotModel(){
+        robotparts = new RobotPart[5];
+        Arm arm = new Arm();
+        Battery battery = new Battery();
+        Head head = new Head();
+        Locomotor locomotor = new Locomotor();
+        Torso torso = new Torso();
+        
+        this.name = "Robot" + number++;
+        this.modelNumber = number;
+        this.robotparts[0] = arm;
+        this.robotparts[1] = battery;
+        this.robotparts[2] = head;
+        this.robotparts[3] = locomotor;
+        this.robotparts[4] = torso;
+    }
     
     public RobotModel(String name, int modelNumber, double price, RobotPart[] robotparts)
     {
