@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package salesassociate;
+package oop_project;
 
 /**
  *
@@ -11,20 +11,13 @@ package salesassociate;
  */
 public class SalesAssociate {
     private String name;
-    private int employeeNumber=1;
-    Order[] orders=new Order[10000];
+    private int employeeNumber;
+    private static int = nextEmployeeNumber = 1;
+    private Order[] orders;
     
     public SalesAssociate (String name){
         this.name=name;
-        this.emloyeeNumber=this.employeeNumber++;
-        
+        this.employeeNumber = nextEmployeeNumber++;
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
 }
