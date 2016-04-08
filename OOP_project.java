@@ -53,8 +53,8 @@ public class OOP_project {
                                         Order newOrder = new Order("XX/XX/XXXX", customer, null, new RobotModel());
                                         customer.getOrders().add(newOrder);
                                         customerExists = true;
+                                        break;
                                     }
-                                    break;
                                 }
                                 if (customerExists == false){
                                     //System.out.println("You are not in the record. Select 'Customer' in the Creation menu to add your profile");
@@ -150,11 +150,11 @@ public class OOP_project {
                                         for (Order order : customer.getOrders()){
                                             System.out.println("Order #" + order.getOrderNumber() + " for $" + order.totalPrice());
                                         }
+                                        break;
                                     }
-                                    if (customerExists == false){
-                                        System.out.println("The specified name was not found.");
-                                    }
-                                    break;
+                                }
+                                if (customerExists == false){
+                                    System.out.println("The specified name was not found.");
                                 }
                                 customerExists = false;
                                 break;
