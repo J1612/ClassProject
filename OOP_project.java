@@ -34,8 +34,10 @@ public class OOP_project {
 
         while (!mainInput.equals("Q")){
             switch(mainInput){
+                
+                /* Open Creation Menu */
                 case "C":
-                    createInput = "0";
+                    createInput = "0";  // I reset this variable each time the Creation menu is chosen, otherwise the user could be 'locked out' of the Creation menu after using it for the first time.
                     while (!createInput.equals("Q")){
                         printCreateMenu();
                         createInput = sc.next();
@@ -47,8 +49,12 @@ public class OOP_project {
                                 customerExists = false;
                                 System.out.print("Enter your name: ");
                                 customerName = sc.next();
+                                
+                                /* Check to see if customer exitst in our customerList */
                                 for(Customer customer: customerList){
                                     if (customer.getName().equals(customerName)){
+                                        
+                                        /* This is where we need to dispay the catalog. We'll need a switch statement (or an if statement) for each option in the catalog */
                                         System.out.println("Thank you, " + customer.getName() + ", for your purchase!");
                                         Order newOrder = new Order("XX/XX/XXXX", customer, null, new RobotModel());
                                         customer.getOrders().add(newOrder);
@@ -68,6 +74,7 @@ public class OOP_project {
                                 System.out.print("Enter your name (Be sure to remember every character): ");
                                 customerName = sc.next();
                                 System.out.println("You were added to the record just now.");
+                                System.out.println();
                                 currentCustomer = new Customer(customerName);
                                 customerList.add(currentCustomer);
                                 break;
@@ -78,6 +85,8 @@ public class OOP_project {
                                 System.out.print("Your Choice: ");
                                 robotComponent = sc.next();
                                 switch(robotComponent){
+                                    
+                                    /* We need to change each case (except default) to add the robot component to an ArrayList of robotParts */
                                     case "H":
                                         Head head = new Head();
                                         break;
@@ -149,6 +158,8 @@ public class OOP_project {
                                 customerExists = false;
                                 System.out.print("Enter your name (If you've entered it before, be sure to use the same exact characters): ");
                                 customerName = sc.next();
+                                
+                                /* Check to see if the customer exists in our customerList */
                                 for (Customer customer : customerList){
                                     if (customer.getName().equals(customerName)){
                                         customerExists = true;
