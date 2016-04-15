@@ -6,7 +6,9 @@
 package oop_project_gui;
 
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
@@ -39,14 +41,23 @@ public class OOP_project_GUI {
         ArrayList<RobotPart> partList = new ArrayList();
         
         JFrame window = new JFrame("Robbie Robot Shop");
-        window.setLayout(new FlowLayout());
+        window.setLayout(new FlowLayout(FlowLayout.CENTER));
         window.setSize(800, 500);
+        window.getContentPane().setBackground(Color.ORANGE);
         window.setLocationRelativeTo(null); // Have the JFrame appear on the center of the monitor
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        
+        JLabel welcome = new JLabel();
+        Font font = new Font("WelcomeFont", Font.ITALIC, 20);
+        welcome.setFont(font);
+        welcome.setForeground(Color.BLUE);
+        welcome.setText("Welcome to the Robbie Robot Shop!");
+        window.add(welcome);
+        
         /* Create a menu bar and have several drop-down menus (File, Create, etc.) containing their respective items */
         JMenuBar menuBar = new JMenuBar();
-        
+        menuBar.setBackground(Color.PINK);
         JMenu menu = new JMenu("File");
         JMenuItem item = new JMenuItem("New Shop");
         menu.add(item);
@@ -338,3 +349,12 @@ public class OOP_project_GUI {
         return validAssociates.stream().anyMatch((associate) -> (associate.getName().equals(testName)));
     }
 }
+
+
+
+
+
+
+
+
+
