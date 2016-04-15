@@ -21,6 +21,7 @@ public class OOP_project {
         String robotComponent;
         String name;
         String customerName;
+        String catalogueInput;
         int modelNumber;
         double price;
         boolean customerExists;
@@ -46,6 +47,7 @@ public class OOP_project {
                             
                             /* Create Order */
                             case "O":
+                                Order newOrder;
                                 customerExists = false;
                                 System.out.print("Enter your name: ");
                                 customerName = sc.next();
@@ -53,11 +55,53 @@ public class OOP_project {
                                 /* Check to see if customer exitst in our customerList */
                                 for(Customer customer: customerList){
                                     if (customer.getName().equals(customerName)){
-                                        
+                                        System.out.println();
                                         /* This is where we need to dispay the catalog. We'll need a switch statement (or an if statement) for each option in the catalog */
-                                        System.out.println("Thank you, " + customer.getName() + ", for your purchase!");
-                                        Order newOrder = new Order("XX/XX/XXXX", customer, null, new RobotModel());
-                                        customer.getOrders().add(newOrder);
+                                        printCatalogue();
+                                        catalogueInput = sc.next();
+                                        switch(catalogueInput)
+                                        {
+                                            case "A":
+                                                System.out.println("Thank you, " + customer.getName() + ", for your purchase!");
+                                                newOrder = new Order("XX/XX/XXXX", customer, null, new RobotModel());
+                                                customer.getOrders().add(newOrder);
+                                                break;
+                                            case "B":
+                                                System.out.println("Thank you, " + customer.getName() + ", for your purchase!");
+                                                newOrder = new Order("XX/XX/XXXX", customer, null, new RobotModel());
+                                                customer.getOrders().add(newOrder);
+                                                break;
+                                            case "C":
+                                                System.out.println("Thank you, " + customer.getName() + ", for your purchase!");
+                                                newOrder = new Order("XX/XX/XXXX", customer, null, new RobotModel());
+                                                customer.getOrders().add(newOrder);
+                                                break;
+                                            case "D":
+                                                System.out.println("Thank you, " + customer.getName() + ", for your purchase!");
+                                                newOrder = new Order("XX/XX/XXXX", customer, null, new RobotModel());
+                                                customer.getOrders().add(newOrder);
+                                                break;
+                                            case "E":
+                                                System.out.println("Thank you, " + customer.getName() + ", for your purchase!");
+                                                newOrder = new Order("XX/XX/XXXX", customer, null, new RobotModel());
+                                                customer.getOrders().add(newOrder);
+                                                break;
+                                            case "F":
+                                                System.out.println("Thank you, " + customer.getName() + ", for your purchase!");
+                                                newOrder = new Order("XX/XX/XXXX", customer, null, new RobotModel());
+                                                customer.getOrders().add(newOrder);
+                                                break;
+                                            case "G":
+                                                System.out.println("Thank you, " + customer.getName() + ", for your purchase!");
+                                                newOrder = new Order("XX/XX/XXXX", customer, null, new RobotModel());
+                                                customer.getOrders().add(newOrder);
+                                                break;
+                                            case "Q":
+                                                break;
+                                        }
+                                        //System.out.println("Thank you, " + customer.getName() + ", for your purchase!");
+                                        //Order newOrder = new Order("XX/XX/XXXX", customer, null, new RobotModel());
+                                        //customer.getOrders().add(newOrder);
                                         customerExists = true;
                                         break;
                                     }
@@ -230,5 +274,21 @@ public class OOP_project {
         System.out.println("(Q)uit to Main Menu");
         System.out.print("Your Choice: ");
     }
+    public static void printCatalogue()
+    {
+        System.out.println("Robot Head Catalogue");
+        System.out.println("-----------");
+        System.out.println("(A) Buisness Can Robot Model(Smart Head,Button Torso,Fancy Legs Locomotor,Left and Right arms power)");
+        System.out.println("(B) Button Can Robot Model(Antennaeless Head,Button Torso,Fancy Legs Locomotor,Both arms silver disk)");
+        System.out.println("(C) Humanoid Soldier Robot Model(Soldier Head,Soldier Torso)");
+        System.out.println("(D) Medic Can Robot Model(Antennaeless Head,Button Torso,Both arms power,Fancy Legs Locomotor)");
+        System.out.println("(E) Orange Can Robot Model(Orange Antennae Head,Orange Can Torso,Orange Flatfoot Locomotor, Both arms orange power) ");
+        System.out.println("(F) Orange Humanoid Robot Model(Orange Head,Orange Torso,Orange Locomotor,Both arms orange)");
+        System.out.println("(G) White Can with Antennae Robot Model(Antennae Head,Can Torso,Flatfoot Locomotor)");
+        System.out.println("(Q)uit to Report Menu");
+        System.out.print("Your Choice: ");
+        
+    }
+    
     
 }
