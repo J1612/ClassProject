@@ -285,7 +285,7 @@ public class OOP_project {
         System.out.println("(E) Orange Can Robot Model(Orange Antennae Head,Orange Can Torso,Orange Flatfoot Locomotor, Both arms orange power) ");
         System.out.println("(F) Orange Humanoid Robot Model(Orange Head,Orange Torso,Orange Locomotor,Both arms orange)");
         System.out.println("(G) White Can with Antennae Robot Model(Antennae Head,Can Torso,Flatfoot Locomotor)");
-        System.out.println("(Q)uit to Report Menu");
+        System.out.println("(Q)uit to Previous Menu");
         System.out.print("Your Choice: ");
         
     }
