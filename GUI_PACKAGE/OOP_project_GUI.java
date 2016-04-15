@@ -14,7 +14,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
@@ -177,7 +176,7 @@ public class OOP_project_GUI {
                 double price;
                 String input;
                 if (armButton.isSelected()){
-                    input = JOptionPane.showInputDialog(componentPanel, "Enter the price:", "Create Arm");
+                    input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the price:", "Create Arm", JOptionPane.QUESTION_MESSAGE, null, null, null);
                     if (input != null){
                         price = Double.parseDouble(input);
                         partList.add(new Arm(price));
@@ -185,13 +184,13 @@ public class OOP_project_GUI {
                     
                 } else if (batteryButton.isSelected()){
                     double energy, maxPower;
-                    input = JOptionPane.showInputDialog(componentPanel, "Enter the energy:", "Create battery");
+                    input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the energy:", "Create battery", JOptionPane.QUESTION_MESSAGE, null, null, null);
                     if (input != null){
                         energy = Double.parseDouble(input);
-                        input = JOptionPane.showInputDialog(componentPanel, "Enter the maximum power:", "Create battery");
+                        input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the maximum power:", "Create battery", JOptionPane.QUESTION_MESSAGE, null, null, null);
                         if (input != null){
                             maxPower = Double.parseDouble(input);
-                            input = JOptionPane.showInputDialog(componentPanel, "Enter the price:", "Create battery");
+                            input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the price:", "Create battery", JOptionPane.QUESTION_MESSAGE, null, null, null);
                             if (input != null){
                                 price = Double.parseDouble(input);
                                 partList.add(new Battery(energy, maxPower, price));
@@ -200,7 +199,7 @@ public class OOP_project_GUI {
                     }
                     
                 } else if (headButton.isSelected()){
-                    input = JOptionPane.showInputDialog(componentPanel, "Enter the price:", "Create Head");
+                    input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the price:", "Create Head", JOptionPane.QUESTION_MESSAGE, null, null, null);
                     if (input != null){
                         price = Double.parseDouble(input);
                         partList.add(new Head(price));
@@ -208,10 +207,10 @@ public class OOP_project_GUI {
                     
                 } else if (locomotorButton.isSelected()){
                     int maxSpeed;
-                    input = JOptionPane.showInputDialog(componentPanel, "Enter the maximum Speed:", "Create Locomotor");
+                    input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the maximum speed:", "Create Locomotor", JOptionPane.QUESTION_MESSAGE, null, null, null);
                     if (input != null){
                         maxSpeed = Integer.parseInt(input);
-                        input = JOptionPane.showInputDialog(componentPanel, "Enter the price:", "Create Locomotor");
+                        input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the price:", "Create Locomotor", JOptionPane.QUESTION_MESSAGE, null, null, null);
                         if (input != null){
                             price = Double.parseDouble(input);
                             partList.add(new Locomotor(maxSpeed, price));
@@ -220,7 +219,7 @@ public class OOP_project_GUI {
                     
                 } else if (torsoButton.isSelected()){
                     int compartments, armCount, counter = 0;
-                    input = JOptionPane.showInputDialog(componentPanel, "Enter the number of batteries needed(must be 1 through 3 inclusive):", "Create Torso");
+                    input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the number of batteries needed(must be 1 through 3 inclusive):", "Create Torso", JOptionPane.QUESTION_MESSAGE, null, null, null);
                     if (input != null){
                         compartments = Integer.parseInt(input);
                         // FIX: 
