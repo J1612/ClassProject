@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.FlowLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
@@ -127,15 +128,29 @@ public class OOP_project_GUI {
         item = new JMenuItem("Customer");
         item.addActionListener((ActionEvent event) -> {
             String inputName = JOptionPane.showInputDialog(window, "Enter your username:");
-            userList.add(new Customer(inputName));
-            JOptionPane.showMessageDialog(window, "You were successfully added!", "Username Added", JOptionPane.INFORMATION_MESSAGE);
+            if (inputName != null){
+                if (findUsername(userList, inputName) == true){
+                    JOptionPane.showMessageDialog(window, "That username has aleady been created.", "Username Already Exists", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    userList.add(new Customer(inputName));
+                    JOptionPane.showMessageDialog(window, "You were successfully added!", "Username Added", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
         });
         menu.add(item);
         item = new JMenuItem("Sales Associate");
         item.addActionListener((ActionEvent event) -> {
             String inputName = JOptionPane.showInputDialog(window, "Enter your full name:");
-            salesAssociateList.add(new SalesAssociate(inputName));
-            JOptionPane.showMessageDialog(window, "You were successfully added!", "Employee Added", JOptionPane.INFORMATION_MESSAGE);
+            if (inputName != null){
+                if (findAssociate(salesAssociateList, inputName) == true){
+                    JOptionPane.showMessageDialog(window, "That associate has aleady been employed.", "Sales Associate Already Exists", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    salesAssociateList.add(new SalesAssociate(inputName));
+                    JOptionPane.showMessageDialog(window, "You were successfully added!", "Sales Associate Added", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
         });
         menu.add(item);
         item = new JMenuItem("Robot Model");
@@ -186,6 +201,7 @@ public class OOP_project_GUI {
             nextButton.addActionListener((ActionEvent buttonEvent) -> {
                 double price;
                 String input;
+                try{
                 if (armButton.isSelected()){
                     input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the price:", "Create Arm", JOptionPane.QUESTION_MESSAGE, null, null, null);
                     if (input != null){
@@ -235,6 +251,11 @@ public class OOP_project_GUI {
                         compartments = Integer.parseInt(input);
                         // FIX: 
                     }
+                }
+                } catch (NumberFormatException n){
+                   JOptionPane.showMessageDialog(componentPanel, "You've entered an incorrect value.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                } catch (HeadlessException h){
+                   JOptionPane.showMessageDialog(componentPanel, "No mouse and/or keyboard detected.");
                 }
             });
             
