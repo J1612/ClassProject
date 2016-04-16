@@ -3,22 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package oop_project;
-
+package oop_project_gui;
+import java.util.ArrayList;
 /**
  *
  * @author Shaun
  */
 public class Torso extends RobotPart{
     
-    private final int batteryComponents = 0; // 1 to 3
+    private final String type = "Torso";
+    private int batteryComponents; // 1 to 3
     private Head head;
-    private Arm[] armArray;
+    private ArrayList<Arm> armArray;
     private Locomotor locomotor;
-    private Battery[] batteryArray;
+    private ArrayList<Battery> batteryArray;
 
     public Torso(){
-        
+        this.batteryComponents = 1;
+        this.head = new Head();
+        this.armArray = new ArrayList();
+        this.locomotor = new Locomotor();
+        this.batteryArray = new ArrayList();
+    }
+    
+    public String getType(){
+        return type;
     }
     
     /**
@@ -45,14 +54,14 @@ public class Torso extends RobotPart{
     /**
      * @return the arm
      */
-    public Arm[] getArmArray() {
+    public ArrayList<Arm> getArmArray() {
         return armArray;
     }
 
     /**
      * @param armArray the armArray to set
      */
-    public void setArmArray(Arm[] armArray) {
+    public void setArmArray(ArrayList<Arm> armArray) {
         this.armArray = armArray;
     }
 
@@ -73,14 +82,14 @@ public class Torso extends RobotPart{
     /**
      * @return the battery
      */
-    public Battery[] getBatteryArray() {
+    public ArrayList<Battery> getBatteryArray() {
         return batteryArray;
     }
 
     /**
      * @param batteryArray the batteryArray to set
      */
-    public void setBattery(Battery[] batteryArray) {
+    public void setBattery(ArrayList<Battery> batteryArray) {
         this.batteryArray = batteryArray;
     }
     
