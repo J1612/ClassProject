@@ -12,6 +12,8 @@ import java.awt.Font;
 import java.awt.FlowLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
+import java.net.MalformedURLException;
+import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JMenuBar;
@@ -26,6 +28,8 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
 import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -34,7 +38,7 @@ import javax.swing.JPanel;
  */
 public class OOP_project_GUI {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MalformedURLException {
         
         ArrayList<Customer> userList = new ArrayList();
         ArrayList<SalesAssociate> salesAssociateList = new ArrayList();
@@ -48,13 +52,14 @@ public class OOP_project_GUI {
         window.setLocationRelativeTo(null); // Have the JFrame appear on the center of the monitor
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        
         JLabel welcome = new JLabel();
         Font font = new Font("WelcomeFont", Font.ITALIC, 20);
         welcome.setFont(font);
         welcome.setForeground(Color.BLUE);
         welcome.setText("Welcome to the Robbie Robot Shop!");
         window.add(welcome);
+        
+        window.add(new JLabel(new ImageIcon("C:\\Users\\Shaun\\Documents\\NetBeansProjects\\OOP_project_GUI\\src\\oop_project_gui\\robot_waving.gif")));
         
         /* Create a menu bar and have several drop-down menus (File, Create, etc.) containing their respective items */
         JMenuBar menuBar = new JMenuBar();
