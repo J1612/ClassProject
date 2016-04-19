@@ -53,13 +53,13 @@ public class OOP_project_GUI {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JLabel welcome = new JLabel();
-        Font font = new Font("WelcomeFont", Font.ITALIC, 20);
+        Font font = new Font("WelcomeFont", Font.ITALIC, 30);
         welcome.setFont(font);
         welcome.setForeground(Color.BLUE);
         welcome.setText("Welcome to the Robbie Robot Shop!");
         window.add(welcome);
         
-        window.add(new JLabel(new ImageIcon("C:\\Users\\Shaun\\Documents\\NetBeansProjects\\OOP_project_GUI\\src\\oop_project_gui\\robot_waving.gif")));
+        window.add(new JLabel(new ImageIcon("robot_waving.gif")));
         
         /* Create a menu bar and have several drop-down menus (File, Create, etc.) containing their respective items */
         JMenuBar menuBar = new JMenuBar();
