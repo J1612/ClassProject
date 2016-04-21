@@ -15,17 +15,21 @@ public class OOP_project {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Customer currentCustomer;
+        SalesAssociate currentSalesAssociate;
         String mainInput;
         String createInput;
         String reportInput;
         String robotComponent;
         String name;
         String customerName;
+        String salesAssociateName;
         String catalogueInput;
         int modelNumber;
         double price;
         boolean customerExists;
+        boolean salesAssociateExists;
         ArrayList<Customer> customerList = new ArrayList();
+        ArrayList<SalesAssociate> salesList = new ArrayList();
         ArrayList<Order> orderList = new ArrayList();
         
         
@@ -49,12 +53,18 @@ public class OOP_project {
                             case "O":
                                 Order newOrder;
                                 customerExists = false;
+                                salesAssociateExists = false;
                                 System.out.print("Enter your name: ");
                                 customerName = sc.next();
+                                System.out.print("Enter your sales associate's name: ");
+                                salesAssociateName = sc.next();
+                                
                                 
                                 /* Check to see if customer exitst in our customerList */
                                 for(Customer customer: customerList){
-                                    if (customer.getName().equals(customerName)){
+                                    for(SalesAssociate sA : salesList)
+                                    {
+                                    if (customer.getName().equals(customerName) && sA.getName().equals(salesAssociateName)){
                                         System.out.println();
                                         /* This is where we need to dispay the catalog. We'll need a switch statement (or an if statement) for each option in the catalog */
                                         printCatalogue();
@@ -105,9 +115,10 @@ public class OOP_project {
                                         customerExists = true;
                                         break;
                                     }
+                                    }
                                 }
                                 if (customerExists == false){
-                                    System.out.println("You are not in the record. Select 'Customer' in the Creation menu to add your profile.");
+                                    System.out.println("You are not in the record. Select 'Customer' or 'Sales Associate' in the Creation menu to add your profile.");
                                 }
                                 customerExists = false;
                                 System.out.println();
@@ -121,6 +132,16 @@ public class OOP_project {
                                 System.out.println();
                                 currentCustomer = new Customer(customerName);
                                 customerList.add(currentCustomer);
+                                break;
+                                
+                                
+                            case "S":
+                                System.out.print("Enter the name of your sales associate: ");
+                                salesAssociateName = sc.next();
+                                System.out.println("You were added to the record just now.");
+                                System.out.println();
+                                currentSalesAssociate = new SalesAssociate(salesAssociateName);
+                                salesList.add(currentSalesAssociate);
                                 break;
                                 
                             /* Create Robot Component */
@@ -285,7 +306,7 @@ public class OOP_project {
         System.out.println("(E) Orange Can Robot Model(Orange Antennae Head,Orange Can Torso,Orange Flatfoot Locomotor, Both arms orange power) ");
         System.out.println("(F) Orange Humanoid Robot Model(Orange Head,Orange Torso,Orange Locomotor,Both arms orange)");
         System.out.println("(G) White Can with Antennae Robot Model(Antennae Head,Can Torso,Flatfoot Locomotor)");
-        System.out.println("(Q)uit to Previous Menu");
+        System.out.println("(Q)uit to Report Menu");
         System.out.print("Your Choice: ");
         
     }
