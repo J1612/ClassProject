@@ -12,14 +12,12 @@ package oop_project_gui;
 public class Arm extends RobotPart{
     
     private final String type = "Arm";
+    private String id;
     private double price;
     
-    public Arm(){
-        this.price = 0.0;
-    }
-    
-    public Arm(double price){
+    public Arm(double price, String id){
         this.price = price;
+        this.id = id;
     }
     
     int powerConsumed(int speed){
@@ -27,12 +25,20 @@ public class Arm extends RobotPart{
         return 0;
     }
 
+    @Override
     public String getType(){
         return type;
     }
     
+    @Override
     public double getPrice() {
         return price;
+    }
+    
+    
+    @Override
+    public String getID(){
+        return id;
     }
 
     public void setPrice(double price) {

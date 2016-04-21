@@ -15,6 +15,10 @@ public class SalesAssociate {
     private static int nextEmployeeNumber = 1;
     private Order[] orders;
     
+    public SalesAssociate(){
+        
+    }
+    
     public SalesAssociate (String name){
         this.name=name;
         this.employeeNumber = nextEmployeeNumber++;

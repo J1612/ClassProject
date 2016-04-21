@@ -12,18 +12,14 @@ package oop_project_gui;
 public abstract class RobotPart {
     
     private String name;
+    private String type;
     private int partNumber;
     private double weight;
-    private double cost;
+    private double price;
     private String description;
-    private Arm arm;
-    private Battery battery;
-    private Torso torso;
-    private Locomotor locomotor;
-    private Head head;
 
     
-    public String getName() {
+    public String getID() {
         return name;
     }
 
@@ -49,12 +45,8 @@ public abstract class RobotPart {
     }
 
 
-    public double getCost() {
-        return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
+    public double getPrice() {
+        return price;
     }
 
     public String getDescription() {
@@ -66,73 +58,9 @@ public abstract class RobotPart {
     }
 
     /**
-     * @return the arm
+     * @return the type
      */
-    public Arm getArm() {
-        return arm;
+    public String getType() {
+        return type;
     }
-
-    /**
-     * @param arm the arm to set
-     */
-    public void setArm(Arm arm) {
-        this.arm = arm;
-    }
-
-    /**
-     * @return the battery
-     */
-    public Battery getBattery() {
-        return battery;
-    }
-
-    /**
-     * @param battery the battery to set
-     */
-    public void setBattery(Battery battery) {
-        this.battery = battery;
-    }
-
-    /**
-     * @return the torso
-     */
-    public Torso getTorso() {
-        return torso;
-    }
-
-    /**
-     * @param torso the torso to set
-     */
-    public void setTorso(Torso torso) {
-        this.torso = torso;
-    }
-
-    /**
-     * @return the locomotor
-     */
-    public Locomotor getLocomotor() {
-        return locomotor;
-    }
-
-    /**
-     * @param locomotor the locomotor to set
-     */
-    public void setLocomotor(Locomotor locomotor) {
-        this.locomotor = locomotor;
-    }
-
-    /**
-     * @return the head
-     */
-    public Head getHead() {
-        return head;
-    }
-
-    /**
-     * @param head the head to set
-     */
-    public void setHead(Head head) {
-        this.head = head;
-    }
-    
 }

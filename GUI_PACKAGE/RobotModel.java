@@ -5,36 +5,24 @@
  */
 package oop_project_gui;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Shaun
  */
 public class RobotModel {
     
-    private static int number = 1;
     private String name;
-    private int modelNumber;
+    private String modelNumber;
     private double price;
-    private RobotPart[] robotparts;
+    private ArrayList<RobotPart> robotparts;
     
     public RobotModel(){
-        robotparts = new RobotPart[5];
-        Arm arm = new Arm();
-        Battery battery = new Battery();
-        Head head = new Head();
-        Locomotor locomotor = new Locomotor();
-        Torso torso = new Torso();
         
-        this.name = "Robot" + number++;
-        this.modelNumber = number;
-        this.robotparts[0] = arm;
-        this.robotparts[1] = battery;
-        this.robotparts[2] = head;
-        this.robotparts[3] = locomotor;
-        this.robotparts[4] = torso;
     }
     
-    public RobotModel(String name, int modelNumber, double price, RobotPart[] robotparts)
+    public RobotModel(String name, String modelNumber, double price, ArrayList<RobotPart> robotparts)
     {
         this.name = name;
         this.modelNumber = modelNumber;
@@ -43,27 +31,23 @@ public class RobotModel {
     }
     
     public double armCost(){
-        return robotparts[0].getArm().getCost();
+        return robotparts.get(0).getPrice();
     }
     
     public double batteryCost(){
-        return robotparts[1].getBattery().getCost();
+        return robotparts.get(1).getPrice();
     }
     
     public double headCost(){
-        return robotparts[2].getHead().getCost();
+        return robotparts.get(2).getPrice();
     }
     
     public double locomotorCost(){
-        return robotparts[3].getLocomotor().getCost();
+        return robotparts.get(3).getPrice();
     }
     
     public double torsoCost(){
-        return robotparts[4].getTorso().getCost();
-    }
-    
-    public double maxSpeed(){
-        return robotparts[2].getLocomotor().getMaxSpeed();
+        return robotparts.get(4).getPrice();
     }
     
     /**
@@ -83,14 +67,14 @@ public class RobotModel {
     /**
      * @return the modelNumber
      */
-    public int getModelNumber() {
+    public String getModelNumber() {
         return modelNumber;
     }
 
     /**
      * @param modelNumber the modelNumber to set
      */
-    public void setModelNumber(int modelNumber) {
+    public void setModelNumber(String modelNumber) {
         this.modelNumber = modelNumber;
     }
 
@@ -101,24 +85,28 @@ public class RobotModel {
         return price;
     }
 
-    /**
-     * @param price the price to set
-     */
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPrice(ArrayList<RobotPart> robotParts) {
+        double cost = 0;
+        
+        for(RobotPart part : robotParts){
+            cost += part.getPrice();
+        }
+        
+        this.price = cost;
+        
     }
 
     /**
      * @return the robotparts
      */
-    public RobotPart[] getRobotparts() {
+    public ArrayList<RobotPart> getRobotparts() {
         return robotparts;
     }
 
     /**
      * @param robotparts the robotparts to set
      */
-    public void setRobotparts(RobotPart[] robotparts) {
+    public void setRobotparts(ArrayList<RobotPart> robotparts) {
         this.robotparts = robotparts;
     }
     

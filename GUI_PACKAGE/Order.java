@@ -6,6 +6,7 @@
 package oop_project_gui;
 
 import java.util.Scanner;
+import java.util.Date;
 /**
  *
  * @author Shaun
@@ -13,17 +14,21 @@ import java.util.Scanner;
 public class Order {
     private static int nextNum = 1;
     private int orderNumber;
-    private String date;
+    private Date date;
     private Customer customer;
     private SalesAssociate salesAssociate;
     private RobotModel robotModel;
     
-    public Order(String date, Customer customer, SalesAssociate salesAssociate, RobotModel robotModel){
+    public Order( Customer customer, SalesAssociate salesAssociate, RobotModel robotModel){
         this.orderNumber = nextNum++;
-        this.date = date;
+        this.date = new Date();
         this.customer = customer;
         this.salesAssociate = salesAssociate;
         this.robotModel = robotModel;
+    }
+    
+    public Order(){
+        
     }
     
     public double robotPrice(){
@@ -56,7 +61,7 @@ public class Order {
     /**
      * @return the date
      */
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -79,5 +84,26 @@ public class Order {
      */
     public RobotModel getRobotModel() {
         return robotModel;
+    }
+
+    /**
+     * @param customer the customer to set
+     */
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    /**
+     * @param salesAssociate the salesAssociate to set
+     */
+    public void setSalesAssociate(SalesAssociate salesAssociate) {
+        this.salesAssociate = salesAssociate;
+    }
+
+    /**
+     * @param robotModel the robotModel to set
+     */
+    public void setRobotModel(RobotModel robotModel) {
+        this.robotModel = robotModel;
     }
 }

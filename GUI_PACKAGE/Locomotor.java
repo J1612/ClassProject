@@ -12,15 +12,12 @@ package oop_project_gui;
 public class Locomotor extends RobotPart{
     
     private final String type = "Locomotor";
+    private String id;
     private int maxSpeed;
     private double price;
-
-    public Locomotor(){
-        this.maxSpeed = 0;
-        this.price = 0.0;
-    }
     
-    public Locomotor(int maxSpeed, double price){
+    public Locomotor(String id, int maxSpeed, double price){
+        this.id = id;
         this.maxSpeed = maxSpeed;
         this.price = price;
     }
@@ -29,6 +26,7 @@ public class Locomotor extends RobotPart{
         return 0;
     }
     
+    @Override
     public String getType(){
         return type;
     }
@@ -50,8 +48,17 @@ public class Locomotor extends RobotPart{
     /**
      * @return the price
      */
+    @Override
     public double getPrice() {
         return price;
+    }
+
+    /**
+     * @return the id
+     */
+    @Override
+    public String getID() {
+        return id;
     }
     
     

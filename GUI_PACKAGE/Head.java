@@ -12,22 +12,30 @@ package oop_project_gui;
 public class Head extends RobotPart{
     
     private final String type = "Head"; 
+    private String id;
     private double price;
-    
-    public Head(){
-        this.price = 0.0;
-    }
 
-    public Head(double price){
+    public Head(String id, double price){
+        this.id = id;
         this.price = price;
     }
     
+    @Override
     public double getPrice() {
         return price;
     }
 
+    @Override
     public String getType() {
         return type;
+    }
+
+    /**
+     * @return the id
+     */
+    @Override
+    public String getID() {
+        return id;
     }
     
 }

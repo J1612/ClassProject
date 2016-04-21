@@ -12,8 +12,9 @@ import java.awt.Font;
 import java.awt.FlowLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JMenuBar;
@@ -26,13 +27,8 @@ import javax.swing.JButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
-
-import java.util.ArrayList;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-
-import java.lang.NumberFormatException;
 
 /**
  *
@@ -46,6 +42,9 @@ public class OOP_project_GUI {
         ArrayList<SalesAssociate> salesAssociateList = new ArrayList();
         ArrayList<RobotModel> modelList = new ArrayList();
         ArrayList<RobotPart> partList = new ArrayList();
+        ArrayList<JRadioButton> buttonList = new ArrayList();
+        ArrayList<JRadioButton> purchaseList = new ArrayList();
+        ArrayList<Order> orderList = new ArrayList();
         
         JFrame window = new JFrame("Robbie Robot Shop");
         window.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -63,25 +62,15 @@ public class OOP_project_GUI {
         
         window.add(new JLabel(new ImageIcon("robot_waving.gif")));
         
-        /* Create a menu bar and have several drop-down menus (File, Create, etc.) containing their respective items */
+        /* Create a menu bar and have multiple drop-down menus containing their respective items */
         JMenuBar menuBar = new JMenuBar();
         menuBar.setBackground(Color.PINK);
-        JMenu menu = new JMenu("File");
-        JMenuItem item = new JMenuItem("New Shop");
-        menu.add(item);
-        item = new JMenuItem("Load Shop");
-        menu.add(item);
-        item = new JMenuItem("Save Shop");
-        menu.add(item);
-        menuBar.add(menu);
-        /* Finished working on the File menu */
         
         /* Begin working on the Creation menu and its items */
-        menu = new JMenu("Create");
-        
-        
-        item = new JMenuItem("Order");
+        JMenu menu = new JMenu("Create");
+        JMenuItem item = new JMenuItem("Order");
         item.addActionListener((ActionEvent event) -> {
+            
             JFrame orderWindow = new JFrame("Create Order");
             orderWindow.setLayout(new FlowLayout());
             orderWindow.setSize(500,150);
@@ -122,7 +111,67 @@ public class OOP_project_GUI {
             
             nextButton.addActionListener((ActionEvent buttonEvent) -> {
                 if ((findAssociate(salesAssociateList, associate.getText()) == true) && (findUsername(userList, username.getText()) == true)){
-                    // FIX: SHOW CATALOG, LET USER CHOOSE, SAVE CHOICE IN CUSTOMER HISTORY
+                    orderWindow.setVisible(false);
+                    Order order = new Order();
+                    Customer currentUser = new Customer();
+                    SalesAssociate salesEmployee = new SalesAssociate();
+                    
+                    for (Customer user : userList){
+                        if (user.getName().equals(username.getText())){
+                            currentUser = user;
+                        }
+                    }
+                    
+                    for (SalesAssociate employee : salesAssociateList){
+                        if (employee.getName().equals(associate.getText())){
+                            salesEmployee = employee;
+                        }
+                    }
+                    
+                    order.setCustomer(currentUser);
+                    order.setSalesAssociate(salesEmployee);
+                    
+                    JFrame catalog = new JFrame("Catalog");
+                    JPanel catalogPanel = new JPanel();
+                    BoxLayout boxLayout = new BoxLayout(catalogPanel, BoxLayout.Y_AXIS);
+                    catalogPanel.setLayout(boxLayout);
+                    catalog.setSize(400, 400);
+                    catalog.setLocationRelativeTo(window);
+                    
+                    ButtonGroup modelButtonGroup = new ButtonGroup();
+                    
+                    for (RobotModel robotModel : modelList){
+                        JRadioButton modelButton = new JRadioButton(robotModel.getName() + " for $" + robotModel.getPrice());
+                        modelButton.setName(robotModel.getName());
+                        modelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        catalogPanel.add(modelButton);
+                        modelButtonGroup.add(modelButton);
+                        purchaseList.add(modelButton);
+                    }
+                    
+                    JButton confirmPurchase = new JButton("Purchase Selected Model");
+                    confirmPurchase.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    catalogPanel.add(confirmPurchase);
+                    
+                    
+                    confirmPurchase.addActionListener((ActionEvent purchase) -> {
+                        for(JRadioButton purchaseOption : purchaseList){
+                            if (purchaseOption.isSelected()){
+                                for(RobotModel robotModel : modelList){
+                                    if (purchaseOption.getName().contains(robotModel.getName())){
+                                        order.setRobotModel(robotModel);
+                                        orderList.add(order);
+                                        JOptionPane.showMessageDialog(catalogPanel, "The order was successfully placed", "Order Placed", JOptionPane.PLAIN_MESSAGE);
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    
+                    catalog.add(catalogPanel);
+                    catalogPanel.setVisible(true);
+                    catalog.setVisible(true);
+                    
                 }
                 else{
                     JOptionPane.showMessageDialog(orderWindow, "Both fields must be filled with a valid name.", "Name Error", JOptionPane.ERROR_MESSAGE);
@@ -161,7 +210,76 @@ public class OOP_project_GUI {
         });
         menu.add(item);
         item = new JMenuItem("Robot Model");
-        // FIX: ADD ACTION EVENT
+        item.addActionListener((ActionEvent event) -> {
+            ArrayList<RobotPart> partsToBeAdded = new ArrayList();
+            
+            JFrame modelFrame = new JFrame("Create Model");
+            modelFrame.setSize(300,200);
+            modelFrame.setLocationRelativeTo(window);
+            
+            JPanel modelPanel = new JPanel();
+            BoxLayout boxLayout = new BoxLayout(modelPanel, BoxLayout.Y_AXIS);
+            modelPanel.setLayout(boxLayout);
+            
+            ButtonGroup partGroup = new ButtonGroup();
+            
+            for(RobotPart part : partList){
+                JRadioButton button = new JRadioButton("Add " + part.getID() + "("+ part.getType() + ")");
+                button.setName(part.getID());
+                button.setAlignmentX(Component.CENTER_ALIGNMENT);
+                buttonList.add(button);
+                modelPanel.add(button);
+                partGroup.add(button);
+            }
+            
+            JButton createModelButton = new JButton("Add Part");
+            createModelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+            modelPanel.add(createModelButton);
+            
+            JButton finishModel = new JButton("Finished Adding Parts");
+            finishModel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            modelPanel.add(finishModel);
+            
+            createModelButton.addActionListener((ActionEvent createModelButtonEvent) -> {
+                for(JRadioButton partButton : buttonList){
+                    if (partButton.isSelected()){
+                        for(RobotPart robotPart : partList){
+                            if (partButton.getName().contains(robotPart.getID())){
+                                partsToBeAdded.add(robotPart);
+                            }
+                        }
+                    }
+                }
+                JOptionPane.showMessageDialog(modelPanel, "Part successfully added to your model.", "Part Added", JOptionPane.PLAIN_MESSAGE);
+            });
+            
+            finishModel.addActionListener((ActionEvent finishModelEvent) -> {
+                String input;
+                String modelNumber;
+                
+                input = (String) JOptionPane.showInputDialog(modelPanel, "Enter the model number: ", "Create Model", JOptionPane.QUESTION_MESSAGE);
+                if (input != null){
+                    modelNumber = input;
+                    input = (String) JOptionPane.showInputDialog(modelPanel, "Enter the model's name: ", "Create Model", JOptionPane.QUESTION_MESSAGE);
+                    if (input != null){                       
+                        RobotModel robotModel = new RobotModel();
+                        robotModel.setPrice(partsToBeAdded);
+                        robotModel.setName(input);
+                        robotModel.setModelNumber(modelNumber);
+                        robotModel.setRobotparts(partsToBeAdded);
+                        
+                        JOptionPane.showMessageDialog(modelPanel, "The model was successfully created.", "Create Model", JOptionPane.PLAIN_MESSAGE);
+                        modelList.add(robotModel);
+                    }
+                }
+                
+            });
+            
+            modelFrame.add(modelPanel);
+            modelFrame.setVisible(true);
+        });
+        
+        
         menu.add(item);
         item = new JMenuItem("Robot Component");
         item.addActionListener((ActionEvent event) -> {
@@ -214,8 +332,11 @@ public class OOP_project_GUI {
                         input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the price:", "Create Arm", JOptionPane.QUESTION_MESSAGE, null, null, null);
                         if (input != null){
                             price = Double.parseDouble(input);
-                            partCreated = true;
-                            partList.add(new Arm(price));
+                            input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the name:", "Create Arm", JOptionPane.QUESTION_MESSAGE, null, null, null);
+                            if (input != null){
+                                partCreated = true;
+                                partList.add(new Arm(price, input));
+                            }
                         }
 
                     } else if (batteryButton.isSelected()){
@@ -229,8 +350,11 @@ public class OOP_project_GUI {
                                 input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the price:", "Create battery", JOptionPane.QUESTION_MESSAGE, null, null, null);
                                 if (input != null){
                                     price = Double.parseDouble(input);
-                                    partCreated = true;
-                                    partList.add(new Battery(energy, maxPower, price));
+                                    input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the name:", "Create battery", JOptionPane.QUESTION_MESSAGE, null, null, null);
+                                    if (input != null){
+                                        partCreated = true;
+                                        partList.add(new Battery(input, energy, maxPower, price));
+                                    }
                                 }
                             }
                         }
@@ -239,8 +363,11 @@ public class OOP_project_GUI {
                         input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the price:", "Create Head", JOptionPane.QUESTION_MESSAGE, null, null, null);
                         if (input != null){
                             price = Double.parseDouble(input);
-                            partCreated = true;
-                            partList.add(new Head(price));
+                            input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the name:", "Create Head", JOptionPane.QUESTION_MESSAGE, null, null, null);
+                            if (input != null){
+                                partCreated = true;
+                                partList.add(new Head(input, price));
+                            }
                         }
 
                     } else if (locomotorButton.isSelected()){
@@ -251,18 +378,28 @@ public class OOP_project_GUI {
                             input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the price:", "Create Locomotor", JOptionPane.QUESTION_MESSAGE, null, null, null);
                             if (input != null){
                                 price = Double.parseDouble(input);
-                                partCreated = true;
-                                partList.add(new Locomotor(maxSpeed, price));
+                                input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the name:", "Create Locomotor", JOptionPane.QUESTION_MESSAGE, null, null, null);
+                                if (input != null){
+                                    partCreated = true;
+                                    partList.add(new Locomotor(input, maxSpeed, price));
+                                }
                             }
                         }
 
                     } else if (torsoButton.isSelected()){
                         int batterySlots;
-                        input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the number of batteries needed(must be 1 through 3 inclusive):", "Create Torso", JOptionPane.QUESTION_MESSAGE, null, null, null);
+                        input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the number of batteries needed (must be 1 through 3 inclusive):", "Create Torso", JOptionPane.QUESTION_MESSAGE, null, null, null);
                         if ((input != null) && (input.compareTo("0") > 0) && (input.compareTo("4") < 0) && (input.length() == 1)){
                             batterySlots = Integer.parseInt(input);
-                            partCreated = true;
-                            partList.add(new Torso(batterySlots));
+                            input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the price:", "Create Torso", JOptionPane.QUESTION_MESSAGE, null, null, null);
+                            if (input != null){
+                                price = Double.parseDouble(input);
+                                input = (String) JOptionPane.showInputDialog(componentPanel, "Enter the name:", "Create Torso", JOptionPane.QUESTION_MESSAGE, null, null, null);
+                                if (input != null){
+                                    partCreated = true;
+                                    partList.add(new Torso(input, batterySlots, price));
+                                }
+                            }
                         }
                         else if (input != null){
                             JOptionPane.showMessageDialog(componentPanel,"You've entered an incorrect value.", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -290,31 +427,37 @@ public class OOP_project_GUI {
         
         /* Begin creating the "View" menu */
         menu = new JMenu("View");
-        item = new JMenuItem("Orders");
-        item.addActionListener((ActionEvent event) -> {
-            JFrame viewOrder = new JFrame("View Orders");
-            viewOrder.setLayout(new FlowLayout());
-            viewOrder.setSize(500,150);
-            viewOrder.setLocationRelativeTo(window);
-            
-            JLabel usernamePrompt = new JLabel("Enter your username:");
-            usernamePrompt.setHorizontalAlignment(SwingConstants.RIGHT);  
-            viewOrder.add(usernamePrompt);
-            JTextField username = new JTextField(20);
-            viewOrder.add(username);
-            
-            username.addActionListener((ActionEvent usernameEvent) -> {
-                if (findUsername(userList, username.getText()) == false){
-                    JOptionPane.showMessageDialog(viewOrder, "That username is not recognized", "Name Error", JOptionPane.ERROR_MESSAGE);
-                }
-                else{
-                    // FIX: View Customer's Orders
-                }
-            });
-            
-            viewOrder.setVisible(true);
-        });
-        menu.add(item);
+//        item = new JMenuItem("Orders");
+//        item.addActionListener((ActionEvent event) -> {
+//            JFrame viewOrder = new JFrame("View Orders");
+//            viewOrder.setLayout(new FlowLayout());
+//            viewOrder.setSize(500,150);
+//            viewOrder.setLocationRelativeTo(window);
+//            
+//            JLabel usernamePrompt = new JLabel("Enter your username:");
+//            usernamePrompt.setHorizontalAlignment(SwingConstants.RIGHT);  
+//            viewOrder.add(usernamePrompt);
+//            JTextField username = new JTextField(20);
+//            viewOrder.add(username);
+//            
+//            username.addActionListener((ActionEvent usernameEvent) -> {
+//                if (findUsername(userList, username.getText()) == false){
+//                    JOptionPane.showMessageDialog(viewOrder, "That username is not recognized", "Name Error", JOptionPane.ERROR_MESSAGE);
+//                }
+//                else{
+//                    for (Customer cust : userList){
+//                        if (cust.getName().equals(username.getText())){
+//                            JFrame orderHistory = new JFrame("Order History");
+//                            orderHistory.setSize(400, 400);
+//                            
+//                        }
+//                    }
+//                }
+//            });
+//            
+//            viewOrder.setVisible(true);
+//        });
+//        menu.add(item);
         item = new JMenuItem("Customers");
         item.addActionListener((ActionEvent event) -> {
             JFrame viewCustomer = new JFrame("View Customers");
@@ -325,7 +468,6 @@ public class OOP_project_GUI {
             for(Customer customer : userList){
                 JLabel customerName = new JLabel();
                 customerName.setText(customer.getName());
-                // FIX: add customer info to "viewCustomer" (format GUI accordingly)
                 viewCustomer.add(customerName);
             }
             viewCustomer.setVisible(true);
@@ -341,7 +483,6 @@ public class OOP_project_GUI {
             for(SalesAssociate associate : salesAssociateList){
                 JLabel associateName = new JLabel();
                 associateName.setText(associate.getName());
-                // FIX: add associate info to "viewAssociate" (format GUI accordingly)
                 viewAssociate.add(associateName);
             }
             viewAssociate.setVisible(true);
@@ -355,7 +496,8 @@ public class OOP_project_GUI {
             viewModel.setLocationRelativeTo(window);
             
             for(RobotModel model : modelList){
-                // FIX: SHOW MODEL
+                JLabel modelLabel = new JLabel(model.getName());
+                viewModel.add(modelLabel);
             }
             viewModel.setVisible(true);
         });
@@ -368,7 +510,9 @@ public class OOP_project_GUI {
             viewComponent.setLocationRelativeTo(window);
             
             for(RobotPart part : partList){
-                // FIX: SHOW PART
+                JLabel partID = new JLabel();
+                partID.setText(part.getID()+ "(" + part.getType() + ")");
+                viewComponent.add(partID);
             }
             viewComponent.setVisible(true);
         });

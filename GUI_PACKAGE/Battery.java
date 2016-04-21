@@ -11,7 +11,8 @@ package oop_project_gui;
  */
 public class Battery extends RobotPart{
     
-    private String type = "Battery";
+    private final String type = "Battery";
+    private String id;
     private double energy;
     private double maxPower;
     private double price;
@@ -20,12 +21,14 @@ public class Battery extends RobotPart{
         
     }
     
-    public Battery(double energy, double maxPower, double price){
+    public Battery(String id, double energy, double maxPower, double price){
+        this.id = id;
         this.energy = energy;
         this.maxPower = maxPower;
         this.price = price;
     }
     
+    @Override
     public String getType(){
         return type;
     }
@@ -61,8 +64,17 @@ public class Battery extends RobotPart{
     /**
      * @return the price
      */
+    @Override
     public double getPrice() {
         return price;
+    }
+
+    /**
+     * @return the id
+     */
+    @Override
+    public String getID() {
+        return id;
     }
     
     
